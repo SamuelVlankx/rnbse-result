@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result Portal</title>
+  <style>
+    .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: white;
+  padding: 5px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.header p {
+  margin: 3px 0;
+}
+    body {
+      font-family: Arial, sans-serif;
+      background: #eef2f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    .header {
+    background: #002b5c;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 4px solid #ffcc00;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .header p {
+      margin: 5px 0 0;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 50px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      text-align: center;
+    }
+
+    input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px;
+      border: none;
+      border-radius: 6px;
+      background: #002b5c;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: #001f40;
+    }
+
+    #result {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .result-card {
+      border: 1px solid #ccc;
+      padding: 18px;
+      border-radius: 8px;
+      background: #fafafa;
+    }
+
+    .result-card h3 {
+      text-align: center;
+      margin-top: 0;
+      color: #0b3d91;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: center;
+    }
+
+    th {
+      background: #0b3d91;
+      color: white;
+    }
+
+    @media print {
+      input, button {
+        display: none;
+      }
+
+      body {
+        background: white;
+      }
+
+      .container {
+        box-shadow: none;
+        margin: 0;
+        max-width: 100%;
+      }
+
+      .header {
+        background: white;
+        color: black;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="header">
+  <div class="header-content">
+    <img src="logo.png" class="logo">
+    <div>
+      <h1>Mizoram Board of School Education (MBSE)</h1>
+      <p>Government Examination Result Portal</p>
+      <p><small>Session 2026</small></p>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Check Your Result</h2>
+
+  <input id="roll" placeholder="Enter 10 Digit Roll Number">
+  <input id="regNo" placeholder="Enter 11 Digit Registration Number">
+
+  <br>
+
+  <button onclick="getResult()">Check Result</button>
+  <button onclick="downloadPDF()">Download PDF</button>
+
+  <div id="result"></div>
+</div>
+
+<script>
+async function getResult() {
+  const roll = document.getElementById("roll").value;
+  const regNo = document.getElementById("regNo").value;
+
+  const res = await fetch(`/result?roll=${roll}&regNo=${regNo}`);
+  const data = await res.json();
+
+  if (data.error) {
+    document.getElementById("result").innerHTML = "<b style='color:red;'>" + data.error + "</b>";
+  } else {
+    document.getElementById("result").innerHTML = `
+      <div class="result-card">
+        <h3>Final Examination Result</h3>
+
+        <p><b>Name:</b> ${data.name}</p>
+        <p><b>Roll No:</b> ${data.roll}</p>
+        <p><b>Registration No:</b> ${data.regNo}</p>
+
+        <table>
+          <tr>
+            <th>Subject</th>
+            <th>Marks</th>
+          </tr>
+          <tr><td>English</td><td>${data.marks.english}</td></tr>
+          <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
+          <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
+          <tr><td>Science</td><td>${data.marks.science}</td></tr>
+          <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
+        </table>
+
+        <p><b>Total:</b> ${data.total}</p>
+        <p><b>Percentage:</b> ${data.percentage}%</p>
+        <p><b>Grade:</b> ${data.grade}</p>
+      </div>
+    `;
+  }
+}
+
+function downloadPDF() {
+  window.print();
+}
+</script>
+<div style="text-align:center; margin-top:40px; font-size:12px; color:#555;">
+  © 2026 Mizoram Board of School Education (MBSE) — Demo Project
+</div>
+</body>
+</html>
