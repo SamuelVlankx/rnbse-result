@@ -8,7 +8,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
-mongoose.connect("mongodb://127.0.0.1:27017/resultPortal")
+mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("Database connected"))
   .catch(err => console.log("Database error:", err));
 
