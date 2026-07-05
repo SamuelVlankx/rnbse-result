@@ -2,6 +2,11 @@ app.get("/test", (req, res) => {
   res.json({ status: "working" });
 });
 
+// 🔍 RESULT (roll + regNo)
+app.get("/result", async (req, res) => {
+  ...
+});
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
