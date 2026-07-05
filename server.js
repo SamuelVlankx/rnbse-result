@@ -14,9 +14,16 @@ app.get("/test", (req, res) => {
 });
 
 // Connect to MongoDB
+console.log("MONGO_URL exists:", !!process.env.MONGO_URL);
+
 mongoose.connect(process.env.MONGO_URL)
-  .then(() => console.log("Database connected"))
-  .catch(err => console.log("Database error:", err));
+  .then(() => {
+    console.log("✅ Database connected");
+  })
+  .catch(err => {
+    console.error("❌ Database error:");
+    console.error(err);
+  });
 
 const Student = mongoose.model("Student", {
   roll: String,
