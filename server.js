@@ -1,12 +1,3 @@
-app.get("/test", (req, res) => {
-  res.json({ status: "working" });
-});
-
-// 🔍 RESULT (roll + regNo)
-app.get("/result", async (req, res) => {
-  ...
-});
-
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -17,6 +8,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static(__dirname));
 
+// Test route
+app.get("/test", (req, res) => {
+  res.json({ status: "working" });
+});
+
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("Database connected"))
   .catch(err => console.log("Database error:", err));
@@ -34,7 +31,7 @@ const Student = mongoose.model("Student", {
   }
 });
 
-// 🔍 RESULT (roll + regNo)
+// Get Result
 app.get("/result", async (req, res) => {
   const { roll, regNo } = req.query;
 
@@ -68,37 +65,38 @@ app.get("/result", async (req, res) => {
   });
 });
 
-// ➕ ADD
+// Add Student
 app.post("/add-student", async (req, res) => {
   try {
     const student = new Student(req.body);
     await student.save();
     res.json({ message: "Student added successfully" });
-  } catch {
-    res.json({ message: "Error adding student" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Error adding student" });
   }
 });
 
-// 📋 LIST
+// List Students
 app.get("/students", async (req, res) => {
   const students = await Student.find();
   res.json(students);
 });
 
-// ✏️ UPDATE
+// Update Student
 app.put("/update-student/:roll", async (req, res) => {
   await Student.findOneAndUpdate({ roll: req.params.roll }, req.body);
   res.json({ message: "Student updated" });
 });
 
-// ❌ DELETE
+// Delete Student
 app.delete("/delete-student/:roll", async (req, res) => {
   await Student.findOneAndDelete({ roll: req.params.roll });
   res.json({ message: "Student deleted" });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
-  console.log("Server running on port " + PORT);
+  console.log(`Server running on port ${PORT}`);
 });
