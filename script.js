@@ -1,1 +1,0 @@
-async function getResult(){const r=await fetch(`/result?roll=${roll.value}&regNo=${regNo.value}`);const d=await r.json();result.innerHTML=d.error?d.error:`<h3>${d.name}</h3><p>Grade: ${d.grade}</p>`;}
