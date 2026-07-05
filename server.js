@@ -1,3 +1,7 @@
+app.get("/test", (req, res) => {
+  res.json({ status: "working" });
+});
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
