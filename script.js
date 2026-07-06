@@ -122,37 +122,3 @@ async function getResult(){
     btn.innerHTML="🔍 Check Result";
 
 }
-
-.result-card{
-    margin-top:25px;
-    border-radius:18px;
-    background:white;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,.18);
-}
-
-.marksheet-header{
-    text-align:center;
-    color:#003366;
-}
-
-.student-info{
-    margin:20px 0;
-    line-height:1.8;
-}
-
-.summary{
-    text-align:center;
-    margin-top:25px;
-}
-
-.pass-badge{
-    display:inline-block;
-    margin-top:15px;
-    background:#28a745;
-    color:white;
-    padding:10px 25px;
-    border-radius:25px;
-    font-weight:bold;
-    font-size:18px;
-}
