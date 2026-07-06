@@ -59,3 +59,33 @@ footer{text-align:center;padding:20px;color:#fff}
     font-size:22px;
     font-weight:bold;
 }
+
+.result-card{
+    position:relative;
+    border:8px double #003366;
+    overflow:hidden;
+}
+
+.result-card::before{
+    content:"MBSE";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) rotate(-30deg);
+    font-size:90px;
+    font-weight:bold;
+    color:rgba(0,51,102,.05);
+    pointer-events:none;
+    user-select:none;
+}
+
+.marksheet-header{
+    border-bottom:2px solid #003366;
+    padding-bottom:15px;
+    margin-bottom:20px;
+}
+
+.summary{
+    border-top:2px solid #003366;
+    padding-top:20px;
+}
