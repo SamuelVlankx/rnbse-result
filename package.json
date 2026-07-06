@@ -10,12 +10,11 @@
   "author": "",
   "license": "ISC",
   "type": "commonjs",
- "dependencies": {
+  "dependencies": {
     "cloudinary": "^2.7.0",
     "cors": "^2.8.6",
     "express": "^5.2.1",
     "mongoose": "^9.6.1",
     "multer": "^2.0.2"
-  }
   }
 }
