@@ -141,15 +141,46 @@ function getFormData() {
 }
 
 async function addStudent() {
+
+  const file = document.getElementById("photo").files[0];
+
+  let photoUrl = "";
+
+  if (file) {
+
+    const formData = new FormData();
+
+    formData.append("photo", file);
+
+    const upload = await fetch("/upload-photo", {
+      method: "POST",
+      body: formData
+    });
+
+    const uploaded = await upload.json();
+
+    photoUrl = uploaded.photo;
+
+  }
+
+  const student = getFormData();
+
+  student.photo = photoUrl;
+
   const res = await fetch("/add-student", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(getFormData())
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(student)
   });
 
   const data = await res.json();
+
   document.getElementById("message").innerText = data.message;
+
   loadStudents();
+
 }
 
 async function updateStudent() {
