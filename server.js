@@ -63,14 +63,15 @@ app.get("/result", async (req, res) => {
   else if (percentage >= 60) grade = "B";
 
   res.json({
-    roll: student.roll,
-    regNo: student.regNo,
-    name: student.name,
-    marks: student.marks,
-    total,
-    percentage,
-    grade
-  });
+  certificateNo: student.certificateNo,
+  roll: student.roll,
+  regNo: student.regNo,
+  name: student.name,
+  marks: student.marks,
+  total,
+  percentage,
+  grade
+});
 });
 
 // Add Student
