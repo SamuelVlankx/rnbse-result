@@ -29,6 +29,14 @@ async function getResult(){
 
         const data=await res.json();
         const percentage = parseFloat(data.percentage);
+        let grade = "F";
+
+if (percentage >= 90) grade = "A+";
+else if (percentage >= 80) grade = "A";
+else if (percentage >= 70) grade = "B+";
+else if (percentage >= 60) grade = "B";
+else if (percentage >= 50) grade = "C";
+else if (percentage >= 33) grade = "D";
 
 let status = "❌ FAIL";
 let division = "FAIL";
