@@ -40,49 +40,69 @@ async function getResult(){
 
             document.getElementById("result").innerHTML=`
 
-            <div class="result-card">
+      <div class="result-card">
 
-            <h2>🎓 Final Examination Result</h2>
+    <div class="marksheet-header">
 
-            <hr>
+        <h2>🏛 Mizoram Board of School Education</h2>
 
-            <p><b>Name:</b> ${data.name}</p>
+        <p>High School Leaving Certificate Examination</p>
 
-            <p><b>Roll Number:</b> ${data.roll}</p>
+        <h3>OFFICIAL MARK SHEET</h3>
 
-            <p><b>Registration Number:</b> ${data.regNo}</p>
+    </div>
 
-            <table>
+    <hr>
 
-            <tr>
+    <div class="student-info">
+
+        <p><strong>Name:</strong> ${data.name}</p>
+
+        <p><strong>Roll Number:</strong> ${data.roll}</p>
+
+        <p><strong>Registration Number:</strong> ${data.regNo}</p>
+
+    </div>
+
+    <table>
+
+        <tr>
 
             <th>Subject</th>
 
             <th>Marks</th>
 
-            </tr>
+        </tr>
 
-            <tr><td>English</td><td>${data.marks.english}</td></tr>
+        <tr><td>English</td><td>${data.marks.english}</td></tr>
 
-            <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
+        <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
 
-            <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
+        <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
 
-            <tr><td>Science</td><td>${data.marks.science}</td></tr>
+        <tr><td>Science</td><td>${data.marks.science}</td></tr>
 
-            <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
+        <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
 
-            </table>
+    </table>
 
-            <br>
+    <div class="summary">
 
-            <p><b>Total :</b> ${data.total}</p>
+        <h3>Total Marks : ${data.total}</h3>
 
-            <p><b>Percentage :</b> ${data.percentage}%</p>
+        <h3>Percentage : ${data.percentage}%</h3>
 
-            <p><b>Grade :</b> ${data.grade}</p>
+        <h2>🏅 Grade : ${data.grade}</h2>
 
-            </div>
+        <div class="pass-badge">
+
+            ✅ PASS
+
+        </div>
+
+    </div>
+
+</div>
 
             `;
 
@@ -101,4 +121,38 @@ async function getResult(){
 
     btn.innerHTML="🔍 Check Result";
 
+}
+
+.result-card{
+    margin-top:25px;
+    border-radius:18px;
+    background:white;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.marksheet-header{
+    text-align:center;
+    color:#003366;
+}
+
+.student-info{
+    margin:20px 0;
+    line-height:1.8;
+}
+
+.summary{
+    text-align:center;
+    margin-top:25px;
+}
+
+.pass-badge{
+    display:inline-block;
+    margin-top:15px;
+    background:#28a745;
+    color:white;
+    padding:10px 25px;
+    border-radius:25px;
+    font-weight:bold;
+    font-size:18px;
 }
