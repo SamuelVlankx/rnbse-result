@@ -104,22 +104,21 @@ if (percentage >= 33) {
 
     <div class="summary">
 
-        <h3>Total Marks : ${data.total}</h3>
+    <h3>Total Marks : ${data.total}</h3>
 
-        <h3>Percentage : ${data.percentage}%</h3>
+    <h3>Percentage : ${data.percentage}%</h3>
 
-        <h2>🏅 Grade : ${data.grade}</h2>
+    <h2>🏅 Grade : ${data.grade}</h2>
 
-        <div class="pass-badge">
+    <h3>Division : ${division}</h3>
 
-            ✅ PASS
+    <div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
 
-        </div>
+        ${status}
 
     </div>
 
 </div>
-
             `;
 
         }
