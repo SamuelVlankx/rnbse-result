@@ -68,6 +68,7 @@ app.get("/result", async (req, res) => {
   roll: student.roll,
   regNo: student.regNo,
   name: student.name,
+  photo: student.photo,
   marks: student.marks,
   total,
   percentage,
