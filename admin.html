@@ -80,6 +80,7 @@
     <input id="roll" placeholder="Roll Number">
     <input id="regNo" placeholder="Registration Number">
     <input id="name" placeholder="Student Name">
+    <input id="photo" placeholder="Photo URL">
     <input id="english" placeholder="English">
     <input id="mizo" placeholder="Mizo">
     <input id="mathematics" placeholder="Mathematics">
@@ -128,6 +129,7 @@ function getFormData() {
     roll: document.getElementById("roll").value,
     regNo: document.getElementById("regNo").value,
     name: document.getElementById("name").value,
+    photo: document.getElementById("photo").value,
     marks: {
       english: Number(document.getElementById("english").value),
       mizo: Number(document.getElementById("mizo").value),
