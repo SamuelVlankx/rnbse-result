@@ -115,6 +115,30 @@ app.delete("/delete-student/:roll", async (req, res) => {
   res.json({ message: "Student deleted" });
 });
 
+app.post("/upload-photo", upload.single("photo"), async (req, res) => {
+  try {
+    const result = await new Promise((resolve, reject) => {
+      cloudinary.uploader.upload_stream(
+        { folder: "students" },
+        (error, result) => {
+          if (error) reject(error);
+          else resolve(result);
+        }
+      ).end(req.file.buffer);
+    });
+
+    res.json({
+      photo: result.secure_url
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({
+      error: "Upload failed"
+    });
+  }
+});
+
 const PORT = process.env.PORT || 8080;
 
 app.listen(PORT, () => {
