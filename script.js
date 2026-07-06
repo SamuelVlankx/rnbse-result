@@ -121,6 +121,7 @@ if (percentage >= 33) {
 </div>
 
     <h3>Division : ${division}</h3>
+    <p><strong>Result Declared:</strong> 15 June 2026</p>
 
     <div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
 
