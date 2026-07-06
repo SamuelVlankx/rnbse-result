@@ -116,7 +116,7 @@ if (percentage >= 33) {
 
     <h3>Percentage : ${data.percentage}%</h3>
 
-    <h2>🏅 Grade : ${data.grade}</h2>
+    <h2>🏅 Grade : ${grade}</h2>
 
     <h3>Division : ${division}</h3>
 
