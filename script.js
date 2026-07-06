@@ -80,15 +80,25 @@ if (percentage >= 33) {
 
     <div class="student-info">
 
-        <p><strong>Name:</strong> ${data.name}</p>
+<div class="student-details">
 
-        <p><strong>Roll Number:</strong> ${data.roll}</p>
+<p><strong>Name:</strong> ${data.name}</p>
 
-        <p><strong>Registration Number:</strong> ${data.regNo}</p>
-        
-        <p><strong>Certificate No:</strong> ${data.certificateNo}</p>
+<p><strong>Roll Number:</strong> ${data.roll}</p>
 
-    </div>
+<p><strong>Registration Number:</strong> ${data.regNo}</p>
+
+<p><strong>Certificate No:</strong> ${data.certificateNo}</p>
+
+</div>
+
+<div class="student-photo">
+
+<img src="${data.photo}" alt="Student Photo">
+
+</div>
+
+</div>
 
     <table>
 
