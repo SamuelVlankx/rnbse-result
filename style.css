@@ -48,3 +48,14 @@ footer{text-align:center;padding:20px;color:#fff}
 .fail{
     background:#dc3545;
 }
+
+.grade-box{
+    display:inline-block;
+    margin-top:12px;
+    padding:10px 22px;
+    border-radius:10px;
+    background:#0b3d91;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+}
