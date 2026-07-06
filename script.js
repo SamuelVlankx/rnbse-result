@@ -119,16 +119,22 @@ if (percentage >= 33) {
     <h3>Percentage : ${data.percentage}%</h3>
 
     <div class="grade-box">
-🏅 Grade : ${grade}
-</div>
+        🏅 Grade : ${grade}
+    </div>
 
     <h3>Division : ${division}</h3>
+
     <p><strong>Result Declared:</strong> 15 June 2026</p>
 
     <div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
-
         ${status}
+    </div>
 
+    <div class="signature">
+        <br><br>
+        ___________________________<br>
+        <strong>Controller of Examinations</strong><br>
+        Mizoram Board of School Education
     </div>
 
 </div>
