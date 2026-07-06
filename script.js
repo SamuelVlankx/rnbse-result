@@ -28,6 +28,22 @@ async function getResult(){
         const res=await fetch(`/result?roll=${roll}&regNo=${regNo}`);
 
         const data=await res.json();
+        const percentage = parseFloat(data.percentage);
+
+let status = "❌ FAIL";
+let division = "FAIL";
+
+if (percentage >= 33) {
+    status = "✅ PASS";
+
+    if (percentage >= 60) {
+        division = "FIRST DIVISION";
+    } else if (percentage >= 45) {
+        division = "SECOND DIVISION";
+    } else {
+        division = "THIRD DIVISION";
+    }
+}
 
         if(data.error){
 
