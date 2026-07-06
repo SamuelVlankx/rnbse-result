@@ -76,6 +76,7 @@
   <div class="card">
     <h2>Admin Panel</h2>
 
+    <input id="certificateNo" placeholder="Certificate Number (e.g. MBSE2026-0001)">
     <input id="roll" placeholder="Roll Number">
     <input id="regNo" placeholder="Registration Number">
     <input id="name" placeholder="Student Name">
@@ -95,11 +96,12 @@
   <table>
     <thead>
       <tr>
+        <th>Certificate No</th>
         <th>Roll</th>
         <th>Reg No</th>
         <th>Name</th>
         <th>Action</th>
-      </tr>
+    </tr>
     </thead>
     <tbody id="studentTable"></tbody>
   </table>
@@ -122,6 +124,7 @@ function login() {
 
 function getFormData() {
   return {
+    certificateNo: document.getElementById("certificateNo").value,
     roll: document.getElementById("roll").value,
     regNo: document.getElementById("regNo").value,
     name: document.getElementById("name").value,
@@ -183,6 +186,7 @@ async function loadStudents() {
   students.forEach(student => {
     table.innerHTML += `
       <tr>
+        <td>${student.certificateNo || ""}</td>
         <td>${student.roll}</td>
         <td>${student.regNo || ""}</td>
         <td>${student.name}</td>
@@ -196,6 +200,7 @@ async function loadStudents() {
 }
 
 function fillForm(student) {
+  document.getElementById("certificateNo").value = student.certificateNo || "";
   document.getElementById("roll").value = student.roll;
   document.getElementById("regNo").value = student.regNo || "";
   document.getElementById("name").value = student.name;
