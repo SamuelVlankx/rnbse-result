@@ -26,6 +26,7 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
 const Student = mongoose.model("Student", {
+  certificateNo: String,
   roll: String,
   regNo: String,
   name: String,
