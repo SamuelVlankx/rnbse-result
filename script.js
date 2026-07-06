@@ -150,3 +150,10 @@ if (percentage >= 33) {
     btn.innerHTML="🔍 Check Result";
 
 }
+
+<div class="signature">
+    <br><br>
+    ___________________________<br>
+    <strong>Controller of Examinations</strong><br>
+    Mizoram Board of School Education
+</div>
