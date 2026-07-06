@@ -86,7 +86,7 @@ if (percentage >= 33) {
 
         <p><strong>Registration Number:</strong> ${data.regNo}</p>
         
-        <p><strong>Certificate No:</strong> MBSE-${data.roll}</p>
+        <p><strong>Certificate No:</strong> ${data.certificateNo}</p>
 
     </div>
 
