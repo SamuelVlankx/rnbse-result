@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const cloudinary = require("cloudinary").v2;
-
+const QRCode = require("qrcode");
 const app = express();
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
@@ -72,16 +72,21 @@ app.get("/result", async (req, res) => {
   if (percentage >= 80) grade = "A";
   else if (percentage >= 60) grade = "B";
 
-  res.json({
-  certificateNo: student.certificateNo,
+  const resultUrl = `${req.protocol}://${req.get("host")}/?roll=${student.roll}&regNo=${student.regNo}`;
+
+const qrCode = await QRCode.toDataURL(resultUrl);
+
+res.json({
   roll: student.roll,
   regNo: student.regNo,
   name: student.name,
-  photo: student.photo,
   marks: student.marks,
   total,
   percentage,
-  grade
+  grade,
+  photo: student.photo,
+  certificateNo: student.certificateNo,
+  qrCode
 });
 });
 
