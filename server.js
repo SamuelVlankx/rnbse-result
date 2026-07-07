@@ -83,6 +83,7 @@ res.json({
   regNo: student.regNo,
   name: student.name,
   marks: student.marks,
+  resultDate: student.resultDate,
   total,
   percentage,
   grade,
