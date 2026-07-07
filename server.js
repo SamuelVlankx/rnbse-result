@@ -36,6 +36,7 @@ mongoose.connect(process.env.MONGO_URL)
 
 const Student = mongoose.model("Student", {
   certificateNo: String,
+  resultDate: String,
   photo: String,
   roll: String,
   regNo: String,
