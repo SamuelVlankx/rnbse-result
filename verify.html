@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Certificate Verification</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+<h1>Mizoram Board of School Education</h1>
+<p>Certificate Verification Portal</p>
+</header>
+
+<div class="card">
+<div id="result">
+<h2>Verifying...</h2>
+</div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+
+const roll = params.get("roll");
+const regNo = params.get("regNo");
+
+async function verify(){
+
+const res = await fetch(`/result?roll=${roll}&regNo=${regNo}`);
+const data = await res.json();
+
+if(data.error){
+
+document.getElementById("result").innerHTML=`
+<h2 style="color:red">❌ Certificate Not Found</h2>
+`;
+
+return;
+
+}
+
+document.getElementById("result").innerHTML=`
+
+<h1 style="color:green">✅ VERIFIED</h1>
+
+<img src="${data.photo}" width="140" style="border-radius:10px"><br><br>
+
+<h2>${data.name}</h2>
+
+<p><b>Certificate No:</b> ${data.certificateNo}</p>
+
+<p><b>Roll No:</b> ${data.roll}</p>
+
+<p><b>Registration No:</b> ${data.regNo}</p>
+
+<p><b>Percentage:</b> ${data.percentage}%</p>
+
+<p><b>Grade:</b> ${data.grade}</p>
+
+`;
+
+}
+
+verify();
+
+</script>
+
+</body>
+</html>
