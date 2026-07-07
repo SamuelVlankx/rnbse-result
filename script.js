@@ -140,9 +140,14 @@ if (percentage >= 33) {
         ${status}
     </div>
 
+    <div class="qr-section">
+    <img src="${data.qrCode}" alt="QR Code" class="qr-code">
+    <p><b>Scan to verify this result</b></p>
+</div>
+
     <div class="signature">
         <br><br>
-        ___________________________<br>
+        James Lalrinchhana<br>
         <strong>Controller of Examinations</strong><br>
         Mizoram Board of School Education
     </div>
