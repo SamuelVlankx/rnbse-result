@@ -80,6 +80,7 @@
     <input id="roll" placeholder="Roll Number">
     <input id="regNo" placeholder="Registration Number">
     <input id="name" placeholder="Student Name">
+    <input id="resultDate" placeholder="Result Date (Example: 15 June 2026)">
     <input id="photo" type="file" accept="image/*">
     <input id="english" placeholder="English">
     <input id="mizo" placeholder="Mizo">
@@ -130,6 +131,7 @@ function getFormData() {
     regNo: document.getElementById("regNo").value,
     name: document.getElementById("name").value,
     photo: document.getElementById("photo").value,
+    resultDate: document.getElementById("resultDate").value,
     marks: {
       english: Number(document.getElementById("english").value),
       mizo: Number(document.getElementById("mizo").value),
