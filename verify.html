@@ -43,9 +43,50 @@ return;
 
 document.getElementById("result").innerHTML=`
 
-<h1 style="color:green">✅ VERIFIED</h1>
+<div style="text-align:center;margin-bottom:20px;">
+<h1 style="color:#0b7a2a;">✅ CERTIFICATE VERIFIED</h1>
+<p style="font-size:18px;color:#555;">
+This certificate has been successfully verified by the
+<br>
+<b>Mizoram Board of School Education</b>
+</p>
+</div>
 
 <img src="${data.photo}" width="140" style="border-radius:10px"><br><br>
+
+<hr>
+
+<table style="width:100%;margin-top:15px;">
+<tr>
+<td><b>Certificate No.</b></td>
+<td>${data.certificateNo}</td>
+</tr>
+
+<tr>
+<td><b>Roll Number</b></td>
+<td>${data.roll}</td>
+</tr>
+
+<tr>
+<td><b>Registration No.</b></td>
+<td>${data.regNo}</td>
+</tr>
+
+<tr>
+<td><b>Percentage</b></td>
+<td>${data.percentage}%</td>
+</tr>
+
+<tr>
+<td><b>Grade</b></td>
+<td>${data.grade}</td>
+</tr>
+
+<tr>
+<td><b>Status</b></td>
+<td style="color:green;"><b>VALID CERTIFICATE</b></td>
+</tr>
+</table>
 
 <h2>${data.name}</h2>
 
@@ -67,5 +108,18 @@ verify();
 
 </script>
 
+<footer style="margin-top:30px;text-align:center;">
+<hr>
+<p>
+This verification was generated electronically by the
+<br>
+<b>Mizoram Board of School Education</b>
+</p>
+
+<p style="color:green;font-weight:bold;">
+✔ Authentic Digital Verification
+</p>
+</footer>
+  
 </body>
 </html>
