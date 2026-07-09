@@ -62,23 +62,55 @@ if (percentage >= 33) {
 
         else{
 
-            document.getElementById("result").innerHTML=`
+           let examTitle =
+    data.examType === "HSSLC"
+        ? "Higher Secondary School Leaving Certificate Examination"
+        : "High School Leaving Certificate Examination";
 
-      <div class="result-card">
+let marksRows = "";
 
-    <div class="marksheet-header">
+if (data.examType === "HSSLC") {
 
-        <h2>🏛 Mizoram Board of School Education</h2>
+    data.subjects.forEach(subject => {
 
-        <p>High School Leaving Certificate Examination</p>
+        marksRows += `
+            <tr>
+                <td>${subject.name}</td>
+                <td>${subject.marks}</td>
+            </tr>
+        `;
 
-        <h3>OFFICIAL MARK SHEET</h3>
+    });
 
-    </div>
+} else {
 
-    <hr>
+    marksRows = `
+        <tr><td>English</td><td>${data.marks.english}</td></tr>
+        <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
+        <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
+        <tr><td>Science</td><td>${data.marks.science}</td></tr>
+        <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
+    `;
 
-    <div class="student-info">
+}
+
+document.getElementById("result").innerHTML = `
+
+<div class="result-card">
+
+<div class="marksheet-header">
+
+<h2>🏛 Mizoram Board of School Education</h2>
+
+<p>${examTitle}</p>
+
+<h3>OFFICIAL MARK SHEET</h3>
+
+</div>
+
+<hr>
+
+<div class="student-info">
 
 <div class="student-details">
 
@@ -102,61 +134,69 @@ if (percentage >= 33) {
 
 </div>
 
-    <table>
+<table>
 
-        <tr>
+<tr>
 
-            <th>Subject</th>
+<th>Subject</th>
 
-            <th>Marks</th>
+<th>Marks</th>
 
-        </tr>
+</tr>
 
-        <tr><td>English</td><td>${data.marks.english}</td></tr>
+${marksRows}
 
-        <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
+</table>
 
-        <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
+<div class="summary">
 
-        <tr><td>Science</td><td>${data.marks.science}</td></tr>
+<h3>Total Marks : ${data.total}</h3>
 
-        <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
+<h3>Percentage : ${data.percentage}%</h3>
 
-    </table>
+<div class="grade-box">
 
-    <div class="summary">
-
-    <h3>Total Marks : ${data.total}</h3>
-
-    <h3>Percentage : ${data.percentage}%</h3>
-
-    <div class="grade-box">
-        🏅 Grade : ${grade}
-    </div>
-
-    <h3>Division : ${division}</h3>
-
-    <p><strong>Result Declared:</strong> 15 June 2026</p>
-
-    <div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
-        ${status}
-    </div>
-
-    <div class="qr-section">
-    <img src="${data.qrCode}" alt="QR Code" class="qr-code">
-    <p><b>Scan to verify this result</b></p>
-</div>
-
-    <div class="signature">
-        <br><br>
-        James Lalrinchhana<br>
-        <strong>Controller of Examinations</strong><br>
-        Mizoram Board of School Education
-    </div>
+🏅 Grade : ${grade}
 
 </div>
-            `;
 
+<h3>Division : ${division}</h3>
+
+<p><strong>Result Declared:</strong> ${data.resultDate}</p>
+
+<div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
+
+${status}
+
+</div>
+
+<div class="qr-section">
+
+<img src="${data.qrCode}" alt="QR Code" class="qr-code">
+
+<p><b>Scan to verify this result</b></p>
+
+</div>
+
+<div class="signature">
+
+<br><br>
+
+James Lalrinchhana
+
+<br>
+
+<strong>Controller of Examinations</strong>
+
+<br>
+
+Mizoram Board of School Education
+
+</div>
+
+</div>
+
+`;
         }
 
     }
