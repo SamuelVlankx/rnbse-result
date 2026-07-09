@@ -69,6 +69,7 @@ const Student = mongoose.model("Student", {
 
 // Get Result
 app.get("/result", async (req, res) => {
+
   const { roll, regNo } = req.query;
 
   const student = await Student.findOne({ roll, regNo });
@@ -77,37 +78,71 @@ app.get("/result", async (req, res) => {
     return res.json({ error: "Invalid Roll Number or Registration Number" });
   }
 
-  const total =
-    student.marks.english +
-    student.marks.mizo +
-    student.marks.mathematics +
-    student.marks.science +
-    student.marks.socialScience;
+  let total = 0;
+  let percentage = 0;
 
-  const percentage = (total / 5).toFixed(2);
+  if (student.examType === "HSSLC") {
+
+    total = student.subjects.reduce((sum, s) => sum + s.marks, 0);
+
+    percentage = (total / student.subjects.length).toFixed(2);
+
+  } else {
+
+    total =
+      student.marks.english +
+      student.marks.mizo +
+      student.marks.mathematics +
+      student.marks.science +
+      student.marks.socialScience;
+
+    percentage = (total / 5).toFixed(2);
+
+  }
 
   let grade = "C";
-  if (percentage >= 80) grade = "A";
-  else if (percentage >= 60) grade = "B";
+
+  if (percentage >= 80)
+    grade = "A";
+
+  else if (percentage >= 60)
+    grade = "B";
 
   const resultUrl =
-`${req.protocol}://${req.get("host")}/verify.html?roll=${student.roll}&regNo=${student.regNo}`;
+    `${req.protocol}://${req.get("host")}/?roll=${student.roll}&regNo=${student.regNo}`;
 
-const qrCode = await QRCode.toDataURL(resultUrl);
+  const qrCode = await QRCode.toDataURL(resultUrl);
 
-res.json({
-  roll: student.roll,
-  regNo: student.regNo,
-  name: student.name,
-  marks: student.marks,
-  resultDate: student.resultDate,
-  total,
-  percentage,
-  grade,
-  photo: student.photo,
-  certificateNo: student.certificateNo,
-  qrCode
-});
+  res.json({
+
+    examType: student.examType,
+
+    roll: student.roll,
+
+    regNo: student.regNo,
+
+    certificateNo: student.certificateNo,
+
+    resultDate: student.resultDate,
+
+    name: student.name,
+
+    photo: student.photo,
+
+    marks: student.marks,
+
+    subjects: student.subjects,
+
+    total,
+
+    percentage,
+
+    grade,
+
+    qrCode
+
+  });
+
 });
 
 // Add Student
