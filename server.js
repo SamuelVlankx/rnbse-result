@@ -35,19 +35,36 @@ mongoose.connect(process.env.MONGO_URL)
   });
 
 const Student = mongoose.model("Student", {
+
+  examType: String,
+
   certificateNo: String,
-  resultDate: String,
+
   photo: String,
+
   roll: String,
+
   regNo: String,
+
   name: String,
+
+  resultDate: String,
+
   marks: {
     english: Number,
     mizo: Number,
     mathematics: Number,
     science: Number,
     socialScience: Number
-  }
+  },
+
+  subjects: [
+    {
+      name: String,
+      marks: Number
+    }
+  ]
+
 });
 
 // Get Result
