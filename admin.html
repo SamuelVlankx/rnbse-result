@@ -162,21 +162,68 @@ function login() {
 }
 
 function getFormData() {
-  return {
-    certificateNo: document.getElementById("certificateNo").value,
-    roll: document.getElementById("roll").value,
-    regNo: document.getElementById("regNo").value,
-    name: document.getElementById("name").value,
-    photo: document.getElementById("photo").value,
-    resultDate: document.getElementById("resultDate").value,
-    marks: {
-      english: Number(document.getElementById("english").value),
-      mizo: Number(document.getElementById("mizo").value),
-      mathematics: Number(document.getElementById("mathematics").value),
-      science: Number(document.getElementById("science").value),
-      socialScience: Number(document.getElementById("socialScience").value)
+
+    const examType = document.getElementById("examType").value;
+
+    let student = {
+        examType,
+        certificateNo: document.getElementById("certificateNo").value,
+        roll: document.getElementById("roll").value,
+        regNo: document.getElementById("regNo").value,
+        name: document.getElementById("name").value,
+        photo: document.getElementById("photo").value,
+        resultDate: document.getElementById("resultDate").value
+    };
+
+    if (examType === "HSLC") {
+
+        student.marks = {
+            english: Number(document.getElementById("english").value),
+            mizo: Number(document.getElementById("mizo").value),
+            mathematics: Number(document.getElementById("mathematics").value),
+            science: Number(document.getElementById("science").value),
+            socialScience: Number(document.getElementById("socialScience").value)
+        };
+
+    } else {
+
+        student.subjects = [
+
+            {
+                name: document.getElementById("subject1").value,
+                marks: Number(document.getElementById("mark1").value)
+            },
+
+            {
+                name: document.getElementById("subject2").value,
+                marks: Number(document.getElementById("mark2").value)
+            },
+
+            {
+                name: document.getElementById("subject3").value,
+                marks: Number(document.getElementById("mark3").value)
+            },
+
+            {
+                name: document.getElementById("subject4").value,
+                marks: Number(document.getElementById("mark4").value)
+            },
+
+            {
+                name: document.getElementById("subject5").value,
+                marks: Number(document.getElementById("mark5").value)
+            },
+
+            {
+                name: document.getElementById("subject6").value,
+                marks: Number(document.getElementById("mark6").value)
+            }
+
+        ];
+
     }
-  };
+
+    return student;
 }
 
 async function addStudent() {
