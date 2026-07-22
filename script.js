@@ -1,219 +1,590 @@
-function updateClock(){
+function updateClock() {
 
-    const now=new Date();
+    const now = new Date();
 
-    document.getElementById("clock").innerHTML=
-        now.toLocaleDateString()+" | "+now.toLocaleTimeString();
+    document.getElementById("clock").innerHTML =
+        now.toLocaleDateString() + " | " + now.toLocaleTimeString();
 
 }
 
-setInterval(updateClock,1000);
+setInterval(updateClock, 1000);
 
 updateClock();
 
-async function getResult(){
 
-    const btn=document.getElementById("btn");
+async function getResult() {
 
-    btn.innerHTML="⏳ Checking...";
+    const btn = document.getElementById("btn");
 
-    btn.disabled=true;
+    btn.innerHTML = "⏳ Checking...";
 
-    const roll=document.getElementById("roll").value;
+    btn.disabled = true;
 
-    const regNo=document.getElementById("regNo").value;
+    const roll = document.getElementById("roll").value;
 
-    try{
+    const regNo = document.getElementById("regNo").value;
 
-        const res=await fetch(`/result?roll=${roll}&regNo=${regNo}`);
 
-        const data=await res.json();
+    try {
+
+        const res = await fetch(
+            `/result?roll=${encodeURIComponent(roll)}&regNo=${encodeURIComponent(regNo)}`
+        );
+
+        const data = await res.json();
+
+
+        /* =========================
+           ERROR CHECK
+        ========================= */
+
+        if (data.error) {
+
+            document.getElementById("result").innerHTML =
+                `<p style="color:red;font-weight:bold;">${data.error}</p>`;
+
+            return;
+
+        }
+
+
+        /* =========================
+           PERCENTAGE
+        ========================= */
+
         const percentage = parseFloat(data.percentage);
+
+
+        /* =========================
+           GRADE
+        ========================= */
+
         let grade = "F";
 
-if (percentage >= 90) grade = "A+";
-else if (percentage >= 80) grade = "A";
-else if (percentage >= 70) grade = "B+";
-else if (percentage >= 60) grade = "B";
-else if (percentage >= 50) grade = "C";
-else if (percentage >= 33) grade = "D";
+        if (percentage >= 90)
+            grade = "A+";
 
-let status = "❌ FAIL";
-let division = "FAIL";
+        else if (percentage >= 80)
+            grade = "A";
 
-if (percentage >= 33) {
-    status = "✅ PASS";
+        else if (percentage >= 70)
+            grade = "B+";
 
-    if (percentage >= 60) {
-        division = "FIRST DIVISION";
-    } else if (percentage >= 45) {
-        division = "SECOND DIVISION";
-    } else {
-        division = "THIRD DIVISION";
-    }
-}
+        else if (percentage >= 60)
+            grade = "B";
 
-        if(data.error){
+        else if (percentage >= 50)
+            grade = "C";
 
-            document.getElementById("result").innerHTML=
-            `<p style="color:red;font-weight:bold;">${data.error}</p>`;
+        else if (percentage >= 33)
+            grade = "D";
+
+
+        /* =========================
+           STATUS & DIVISION
+        ========================= */
+
+        let status = "❌ FAIL";
+
+        let division = "FAIL";
+
+
+        if (percentage >= 33) {
+
+            status = "✅ PASS";
+
+
+            if (percentage >= 60) {
+
+                division = "FIRST DIVISION";
+
+            }
+
+            else if (percentage >= 45) {
+
+                division = "SECOND DIVISION";
+
+            }
+
+            else {
+
+                division = "THIRD DIVISION";
+
+            }
 
         }
 
-        else{
 
-           let examTitle =
-    data.examType === "HSSLC"
-        ? "Higher Secondary School Leaving Certificate Examination"
-        : "High School Leaving Certificate Examination";
+        /* =========================
+           EXAM TITLE
+        ========================= */
 
-let marksRows = "";
+        let examTitle =
+            data.examType === "HSSLC"
+                ? "Higher Secondary School Leaving Certificate Examination"
+                : "High School Leaving Certificate Examination";
 
-if (data.examType === "HSSLC") {
 
-    data.subjects.forEach(subject => {
+        /* =========================
+           SUBJECT ROWS
+        ========================= */
 
-        marksRows += `
-            <tr>
-                <td>${subject.name}</td>
-                <td>${subject.marks}</td>
-            </tr>
+        let marksRows = "";
+
+
+        /* HSSLC - 5 CUSTOM SUBJECTS */
+
+        if (data.examType === "HSSLC") {
+
+            if (data.subjects && data.subjects.length > 0) {
+
+                data.subjects.forEach((subject, index) => {
+
+                    marksRows += `
+
+                        <tr>
+
+                            <td>
+                                ${index + 1}
+                            </td>
+
+                            <td>
+                                ${subject.name}
+                            </td>
+
+                            <td>
+                                ${subject.marks}
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                });
+
+            }
+
+        }
+
+
+        /* HSLC - 5 FIXED SUBJECTS */
+
+        else {
+
+            marksRows = `
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>English</td>
+
+                    <td>
+                        ${data.marks.english}
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Mizo</td>
+
+                    <td>
+                        ${data.marks.mizo}
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Mathematics</td>
+
+                    <td>
+                        ${data.marks.mathematics}
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>Science</td>
+
+                    <td>
+                        ${data.marks.science}
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>5</td>
+
+                    <td>Social Science</td>
+
+                    <td>
+                        ${data.marks.socialScience}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+
+        /* =========================
+           RESULT MARKSHEET
+        ========================= */
+
+        document.getElementById("result").innerHTML = `
+
+
+        <div class="result-card">
+
+
+            <!-- HEADER -->
+
+            <div class="marksheet-header">
+
+                <h2>
+                    🏛 Mizoram Board of School Education
+                </h2>
+
+                <p>
+                    ${examTitle}
+                </p>
+
+                <h3>
+                    OFFICIAL MARK SHEET
+                </h3>
+
+            </div>
+
+
+            <hr>
+
+
+            <!-- STUDENT INFORMATION -->
+
+            <div class="student-info">
+
+
+                <div class="student-details">
+
+
+                    <p>
+
+                        <strong>
+                            Name:
+                        </strong>
+
+                        ${data.name}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Roll Number:
+                        </strong>
+
+                        ${data.roll}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Registration Number:
+                        </strong>
+
+                        ${data.regNo}
+
+                    </p>
+
+
+                    <!-- HSSLC STREAM -->
+
+                    ${
+                        data.examType === "HSSLC"
+
+                        ? `
+
+                        <p>
+
+                            <strong>
+                                Stream:
+                            </strong>
+
+                            ${data.stream || ""}
+
+                        </p>
+
+                        `
+
+                        : ""
+
+                    }
+
+
+                    <p>
+
+                        <strong>
+                            Result Declared:
+                        </strong>
+
+                        ${data.resultDate}
+
+                    </p>
+
+
+                    <p>
+
+                        <strong>
+                            Certificate No:
+                        </strong>
+
+                        ${data.certificateNo}
+
+                    </p>
+
+
+                </div>
+
+
+                <!-- STUDENT PHOTO -->
+
+                <div class="student-photo">
+
+
+                    <img
+
+                        src="${data.photo}"
+
+                        alt="Student Photo"
+
+                    >
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- SUBJECT MARKS TABLE -->
+
+            <table>
+
+
+                <thead>
+
+
+                    <tr>
+
+
+                        <th>
+                            Sl. No.
+                        </th>
+
+
+                        <th>
+                            Subject
+                        </th>
+
+
+                        <th>
+                            Marks Obtained
+                        </th>
+
+
+                    </tr>
+
+
+                </thead>
+
+
+                <tbody>
+
+
+                    ${marksRows}
+
+
+                </tbody>
+
+
+            </table>
+
+
+            <!-- RESULT SUMMARY -->
+
+            <div class="summary">
+
+
+                <h3>
+
+                    Total Marks :
+                    ${data.total}
+
+                </h3>
+
+
+                <h3>
+
+                    Percentage :
+                    ${data.percentage}%
+
+                </h3>
+
+
+                <!-- GRADE -->
+
+                <div class="grade-box">
+
+                    🏅 Grade :
+                    ${grade}
+
+                </div>
+
+
+                <h3>
+
+                    Division :
+                    ${division}
+
+                </h3>
+
+
+                <!-- PASS / FAIL -->
+
+                <div
+
+                    class="pass-badge ${
+                        status.includes("PASS")
+                            ? "pass"
+                            : "fail"
+                    }"
+
+                >
+
+                    ${status}
+
+                </div>
+
+
+                <p>
+
+                    <strong>
+                        Result Declared:
+                    </strong>
+
+                    ${data.resultDate}
+
+                </p>
+
+
+            </div>
+
+
+            <!-- QR CODE -->
+
+            <div class="qr-section">
+
+
+                <img
+
+                    src="${data.qrCode}"
+
+                    alt="QR Code"
+
+                    class="qr-code"
+
+                >
+
+
+                <p>
+
+                    <b>
+                        Scan to verify this result
+                    </b>
+
+                </p>
+
+
+            </div>
+
+
+            <!-- SIGNATURE -->
+
+            <div class="signature">
+
+
+                <br>
+                <br>
+
+
+                James Lalrinchhana
+
+
+                <br>
+
+
+                <strong>
+                    Controller of Examinations
+                </strong>
+
+
+                <br>
+
+
+                Mizoram Board of School Education
+
+
+            </div>
+
+
+        </div>
+
+
         `;
 
-    });
-
-} else {
-
-    marksRows = `
-        <tr><td>English</td><td>${data.marks.english}</td></tr>
-        <tr><td>Mizo</td><td>${data.marks.mizo}</td></tr>
-        <tr><td>Mathematics</td><td>${data.marks.mathematics}</td></tr>
-        <tr><td>Science</td><td>${data.marks.science}</td></tr>
-        <tr><td>Social Science</td><td>${data.marks.socialScience}</td></tr>
-    `;
-
-}
-
-document.getElementById("result").innerHTML = `
-
-<div class="result-card">
-
-<div class="marksheet-header">
-
-<h2>🏛 Mizoram Board of School Education</h2>
-
-<p>${examTitle}</p>
-
-<h3>OFFICIAL MARK SHEET</h3>
-
-</div>
-
-<hr>
-
-<div class="student-info">
-
-<div class="student-details">
-
-<p><strong>Name:</strong> ${data.name}</p>
-
-<p><strong>Roll Number:</strong> ${data.roll}</p>
-
-<p><strong>Registration Number:</strong> ${data.regNo}</p>
-
-${data.examType === "HSSLC" ? `
-<p><strong>Stream:</strong> ${data.stream}</p>
-` : ""}
-
-<p><strong>Result Declared:</strong> ${data.resultDate}</p>
-
-<p><strong>Certificate No:</strong> ${data.certificateNo}</p>
-
-</div>
-
-<div class="student-photo">
-
-<img src="${data.photo}" alt="Student Photo">
-
-</div>
-
-</div>
-
-<table>
-
-<tr>
-
-<th>Subject</th>
-
-<th>Marks</th>
-
-</tr>
-
-${marksRows}
-
-</table>
-
-<div class="summary">
-
-<h3>Total Marks : ${data.total}</h3>
-
-<h3>Percentage : ${data.percentage}%</h3>
-
-<div class="grade-box">
-
-🏅 Grade : ${grade}
-
-</div>
-
-<h3>Division : ${division}</h3>
-
-<p><strong>Result Declared:</strong> ${data.resultDate}</p>
-
-<div class="pass-badge ${status.includes('PASS') ? 'pass' : 'fail'}">
-
-${status}
-
-</div>
-
-<div class="qr-section">
-
-<img src="${data.qrCode}" alt="QR Code" class="qr-code">
-
-<p><b>Scan to verify this result</b></p>
-
-</div>
-
-<div class="signature">
-
-<br><br>
-
-James Lalrinchhana
-
-<br>
-
-<strong>Controller of Examinations</strong>
-
-<br>
-
-Mizoram Board of School Education
-
-</div>
-
-</div>
-
-`;
-        }
 
     }
 
-    catch{
 
-        document.getElementById("result").innerHTML=
-        `<p style="color:red;">Unable to connect to server.</p>`;
+    catch (error) {
+
+
+        console.error(error);
+
+
+        document.getElementById("result").innerHTML =
+
+            `<p style="color:red;">
+                Unable to connect to server.
+            </p>`;
+
 
     }
 
-    btn.disabled=false;
 
-    btn.innerHTML="🔍 Check Result";
+    btn.disabled = false;
+
+
+    btn.innerHTML =
+        "🔍 Check Result";
+
 
 }
