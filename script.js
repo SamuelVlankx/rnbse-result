@@ -120,6 +120,10 @@ document.getElementById("result").innerHTML = `
 
 <p><strong>Registration Number:</strong> ${data.regNo}</p>
 
+${data.examType === "HSSLC" ? `
+<p><strong>Stream:</strong> ${data.stream}</p>
+` : ""}
+
 <p><strong>Result Declared:</strong> ${data.resultDate}</p>
 
 <p><strong>Certificate No:</strong> ${data.certificateNo}</p>
