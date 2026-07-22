@@ -1,10 +1,12 @@
+/* =========================
+   MAIN WEBSITE
+========================= */
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #0b3d91, #dfefff);
 }
-
-/* MAIN HEADER */
 
 header {
     background: #072b63;
@@ -18,8 +20,6 @@ header {
     margin-top: 8px;
     font-weight: bold;
 }
-
-/* SEARCH CARD */
 
 .card {
     max-width: 520px;
@@ -52,420 +52,557 @@ button:hover {
     background: #06295f;
 }
 
-/* FOOTER */
-
 footer {
     text-align: center;
     padding: 20px;
     color: #fff;
 }
 
-/* ================================= */
-/* OFFICIAL MARKSHEET RESULT CARD */
-/* ================================= */
+
+/* =========================
+   RESULT MARKSHEET
+========================= */
 
 .result-card {
+
     position: relative;
+
     margin-top: 25px;
-    padding: 25px;
+
+    padding: 30px;
+
     background: #fff;
+
     border: 8px double #003366;
-    border-radius: 4px;
+
+    border-radius: 5px;
+
     box-shadow: 0 10px 30px rgba(0,0,0,.18);
+
     overflow: hidden;
+
+    box-sizing: border-box;
+
 }
+
 
 /* WATERMARK */
 
 .result-card::before {
+
     content: "MBSE";
+
     position: absolute;
+
     top: 50%;
+
     left: 50%;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    font-size: 100px;
+
+    transform:
+        translate(-50%, -50%)
+        rotate(-30deg);
+
+    font-size: 90px;
+
     font-weight: bold;
-    color: rgba(0,51,102,.045);
+
+    color: rgba(0,51,102,.05);
+
     pointer-events: none;
+
     user-select: none;
+
     z-index: 0;
+
 }
 
-/* Keep actual content above watermark */
+
+/* KEEP CONTENT ABOVE WATERMARK */
 
 .result-card > * {
+
     position: relative;
+
     z-index: 1;
+
 }
 
-/* ================================= */
-/* MARKSHEET HEADER */
-/* ================================= */
+
+/* =========================
+   MARKSHEET HEADER
+========================= */
 
 .marksheet-header {
+
     text-align: center;
+
     color: #003366;
-    border-bottom: 2px solid #003366;
-    padding-bottom: 15px;
+
+    border: 2px solid #003366;
+
+    padding: 18px;
+
     margin-bottom: 20px;
+
+    background: #f7fbff;
+
 }
 
 .marksheet-header h2 {
-    margin: 5px 0;
+
+    margin: 0 0 8px 0;
+
     font-size: 24px;
+
     text-transform: uppercase;
+
 }
 
 .marksheet-header p {
-    margin: 8px 0;
-    font-size: 18px;
+
+    margin: 6px 0;
+
+    font-size: 17px;
+
     font-weight: bold;
-    text-transform: uppercase;
+
 }
 
 .marksheet-header h3 {
-    margin: 8px 0;
-    font-size: 20px;
-}
 
-/* ================================= */
-/* STUDENT INFORMATION */
-/* ================================= */
+    margin: 10px 0 0;
 
-.student-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    gap: 25px;
-    margin: 20px 0;
-    line-height: 1.8;
-}
-
-.student-details {
-    flex: 1;
-}
-
-.student-details p {
-    margin: 5px 0;
-}
-
-.student-photo img {
-    width: 120px;
-    height: 150px;
-    object-fit: cover;
-    border: 2px solid #003366;
-    background: #fff;
-}
-
-/* ================================= */
-/* MARKS TABLE */
-/* ================================= */
-
-.result-card table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background: rgba(255,255,255,.95);
-}
-
-.result-card th,
-.result-card td {
-    border: 1px solid #777;
-    padding: 10px 7px;
-    text-align: center;
-}
-
-.result-card th {
-    background: #0b3d91;
-    color: white;
-    font-weight: bold;
-}
-
-.result-card td:first-child {
-    text-align: left;
-    font-weight: bold;
-}
-
-/* ================================= */
-/* SUMMARY */
-/* ================================= */
-
-.summary {
-    border-top: 2px solid #003366;
-    margin-top: 25px;
-    padding-top: 20px;
-    text-align: center;
-}
-
-.summary h3 {
-    margin: 10px 0;
-}
-
-/* ================================= */
-/* GRADE */
-/* ================================= */
-
-.grade-box {
-    display: inline-block;
-    margin-top: 12px;
-    padding: 10px 22px;
-    border-radius: 5px;
-    background: #0b3d91;
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-/* ================================= */
-/* PASS / FAIL */
-/* ================================= */
-
-.pass-badge {
-    display: inline-block;
-    margin-top: 15px;
-    color: white;
-    padding: 10px 25px;
-    border-radius: 5px;
-    font-weight: bold;
     font-size: 18px;
+
+    letter-spacing: 1px;
+
 }
 
-.pass {
-    background: #28a745;
-}
-
-.fail {
-    background: #dc3545;
-}
-
-/* ================================= */
-/* SIGNATURE */
-/* ================================= */
-
-.signature {
-    margin-top: 40px;
-    text-align: right;
-    font-size: 15px;
-    color: #333;
-    line-height: 1.5;
-}
-
-/* ================================= */
-/* QR CODE */
-/* ================================= */
-
-.qr-section {
-    text-align: center;
-    margin-top: 30px;
-    border-top: 1px solid #999;
-    padding-top: 20px;
-}
-
-.qr-code {
-    width: 140px;
-    height: 140px;
-    border: 1px solid #999;
-    padding: 8px;
-    background: white;
-}
-
-/* ================================= */
-/* PRINT VERSION */
-/* ================================= */
-
-@media print {
-
-    body {
-        background: white;
-        margin: 0;
-    }
-
-    header,
-    footer,
-    .card > h2,
-    .card > input,
-    .card > button {
-        display: none !important;
-    }
-
-    .card {
-        max-width: none;
-        margin: 0;
-        padding: 0;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    .result-card {
-        margin: 0;
-        width: 100%;
-        box-sizing: border-box;
-        border: 5px double #003366;
-        box-shadow: none;
-        border-radius: 0;
-    }
-
-    .result-card::before {
-        color: rgba(0,51,102,.04);
-    }
-
-    @page {
-        size: A4;
-        margin: 10mm;
-    }
-}
-
-/* ================================= */
-/* MOBILE */
-/* ================================= */
-
-@media (max-width: 600px) {
-
-    .card {
-        margin: 20px 10px;
-        padding: 15px;
-    }
-
-    .result-card {
-        padding: 12px;
-        border-width: 5px;
-    }
-
-    .marksheet-header h2 {
-        font-size: 18px;
-    }
-
-    .marksheet-header p {
-        font-size: 14px;
-    }
-
-    .marksheet-header h3 {
-        font-size: 16px;
-    }
-
-    .student-info {
-        flex-direction: column;
-    }
-
-    .student-photo {
-        text-align: center;
-        width: 100%;
-    }
-
-    .result-card table {
-        font-size: 12px;
-    }
-
-    .result-card th,
-    .result-card td {
-        padding: 6px 3px;
-    }
-
-    .student-details {
-        width: 100%;
-    }
-
-    .qr-code {
-        width: 110px;
-        height: 110px;
-    }
-}
 
 /* =========================
-   OFFICIAL A4 PRINT LAYOUT
+   STUDENT INFORMATION
+========================= */
+
+.student-info {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: stretch;
+
+    gap: 20px;
+
+    margin: 20px 0;
+
+    border: 2px solid #003366;
+
+    padding: 0;
+
+    background: #fff;
+
+}
+
+
+.student-details {
+
+    flex: 1;
+
+    padding: 12px 18px;
+
+}
+
+
+.student-details p {
+
+    margin: 0;
+
+    padding: 9px 5px;
+
+    border-bottom: 1px solid #ccc;
+
+    line-height: 1.5;
+
+}
+
+
+.student-details p:last-child {
+
+    border-bottom: none;
+
+}
+
+
+.student-photo {
+
+    width: 140px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px;
+
+    border-left: 2px solid #003366;
+
+}
+
+
+.student-photo img {
+
+    width: 120px;
+
+    height: 150px;
+
+    object-fit: cover;
+
+    border: 2px solid #003366;
+
+    background: #fff;
+
+}
+
+
+/* =========================
+   SUBJECT MARKS TABLE
+========================= */
+
+.result-card table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    margin-top: 20px;
+
+    border: 2px solid #003366;
+
+}
+
+
+.result-card th {
+
+    background: #003366;
+
+    color: white;
+
+    font-weight: bold;
+
+    text-align: center;
+
+    padding: 12px;
+
+    border: 1px solid #003366;
+
+}
+
+
+.result-card td {
+
+    padding: 11px;
+
+    border: 1px solid #555;
+
+    text-align: center;
+
+    font-size: 15px;
+
+}
+
+
+.result-card td:nth-child(2) {
+
+    text-align: left;
+
+    font-weight: bold;
+
+}
+
+
+.result-card tbody tr:nth-child(even) {
+
+    background: #f5f8fc;
+
+}
+
+
+/* =========================
+   RESULT SUMMARY
+========================= */
+
+.summary {
+
+    margin-top: 25px;
+
+    border: 2px solid #003366;
+
+    padding: 20px;
+
+    text-align: center;
+
+    background: #f7fbff;
+
+}
+
+
+.summary h3 {
+
+    margin: 8px 0;
+
+    color: #003366;
+
+}
+
+
+/* =========================
+   GRADE
+========================= */
+
+.grade-box {
+
+    display: inline-block;
+
+    margin-top: 12px;
+
+    padding: 10px 25px;
+
+    border-radius: 5px;
+
+    background: #0b3d91;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+/* =========================
+   PASS / FAIL
+========================= */
+
+.pass-badge {
+
+    display: inline-block;
+
+    margin-top: 15px;
+
+    padding: 10px 30px;
+
+    border-radius: 5px;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 18px;
+
+}
+
+
+.pass {
+
+    background: #198754;
+
+}
+
+
+.fail {
+
+    background: #dc3545;
+
+}
+
+
+/* =========================
+   QR CODE
+========================= */
+
+.qr-section {
+
+    text-align: center;
+
+    margin-top: 30px;
+
+    padding-top: 20px;
+
+    border-top: 2px solid #003366;
+
+}
+
+
+.qr-code {
+
+    width: 140px;
+
+    height: 140px;
+
+    border: 2px solid #003366;
+
+    padding: 8px;
+
+    background: white;
+
+}
+
+
+/* =========================
+   SIGNATURE
+========================= */
+
+.signature {
+
+    margin-top: 40px;
+
+    padding-top: 15px;
+
+    text-align: right;
+
+    font-size: 15px;
+
+    color: #333;
+
+}
+
+
+/* =========================
+   PRINT / A4
 ========================= */
 
 @media print {
 
     @page {
+
         size: A4;
+
         margin: 12mm;
+
     }
+
 
     body {
+
         background: white;
+
         margin: 0;
+
         padding: 0;
+
     }
+
 
     header,
+
     footer,
+
     .card {
+
         display: none !important;
+
     }
+
 
     #result {
+
         display: block !important;
+
         margin: 0 !important;
+
         padding: 0 !important;
+
     }
 
+
     .result-card {
+
         width: 100%;
+
         max-width: none;
+
         margin: 0;
+
         padding: 25px;
-        box-sizing: border-box;
 
         border: 8px double #003366;
+
         border-radius: 0;
 
         box-shadow: none;
+
         page-break-inside: avoid;
+
     }
+
 
     .marksheet-header {
-        color: #003366;
+
+        -webkit-print-color-adjust: exact;
+
+        print-color-adjust: exact;
+
     }
 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
 
-    th,
-    td {
-        border: 1px solid #333;
-        padding: 10px;
-        text-align: center;
-    }
+    .result-card th {
 
-    th {
         background: #003366 !important;
+
         color: white !important;
+
+        -webkit-print-color-adjust: exact;
+
+        print-color-adjust: exact;
+
     }
+
+
+    .grade-box,
+
+    .pass-badge {
+
+        -webkit-print-color-adjust: exact;
+
+        print-color-adjust: exact;
+
+    }
+
 
     .student-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
+
+        page-break-inside: avoid;
+
     }
 
-    .student-photo img {
-        width: 120px;
-        height: 150px;
-        object-fit: cover;
+
+    .result-card table {
+
+        page-break-inside: avoid;
+
     }
+
 
     .summary {
-        border-top: 2px solid #003366;
-        margin-top: 20px;
-        padding-top: 15px;
+
+        page-break-inside: avoid;
+
     }
+
 
     .qr-section {
-        margin-top: 20px;
+
+        page-break-inside: avoid;
+
     }
+
 
     .signature {
-        margin-top: 30px;
-    }
 
-    .pass-badge,
-    .grade-box {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+        page-break-inside: avoid;
+
     }
 
 }
