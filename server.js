@@ -85,9 +85,11 @@ app.get("/result", async (req, res) => {
 
   if (student.examType === "HSSLC") {
 
-    total = student.subjects.reduce((sum, s) => sum + s.marks, 0);
+    const hsslcSubjects = student.subjects.slice(0, 5);
 
-    percentage = (total / student.subjects.length).toFixed(2);
+    total = hsslcSubjects.reduce((sum, s) => sum + s.marks, 0);
+
+    percentage = (total / 5).toFixed(2);
 
   } else {
 
@@ -135,8 +137,9 @@ app.get("/result", async (req, res) => {
 
     marks: student.marks,
 
-    subjects: student.subjects,
-
+    subjects: student.subjects,subjects: student.examType === "HSSLC"
+  ? student.subjects.slice(0, 5)
+  : student.subjects,
     total,
 
     percentage,
