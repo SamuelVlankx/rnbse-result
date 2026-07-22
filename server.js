@@ -38,7 +38,9 @@ const Student = mongoose.model("Student", {
 
   examType: String,
 
-  certificateNo: String,
+stream: String,
+
+certificateNo: String,
 
   photo: String,
 
@@ -116,6 +118,8 @@ app.get("/result", async (req, res) => {
   res.json({
 
     examType: student.examType,
+
+    stream: student.stream,
 
     roll: student.roll,
 
