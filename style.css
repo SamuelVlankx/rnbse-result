@@ -370,3 +370,102 @@ footer {
         height: 110px;
     }
 }
+
+/* =========================
+   OFFICIAL A4 PRINT LAYOUT
+========================= */
+
+@media print {
+
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
+
+    body {
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    header,
+    footer,
+    .card {
+        display: none !important;
+    }
+
+    #result {
+        display: block !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    .result-card {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 25px;
+        box-sizing: border-box;
+
+        border: 8px double #003366;
+        border-radius: 0;
+
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+
+    .marksheet-header {
+        color: #003366;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    th,
+    td {
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+    th {
+        background: #003366 !important;
+        color: white !important;
+    }
+
+    .student-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .student-photo img {
+        width: 120px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    .summary {
+        border-top: 2px solid #003366;
+        margin-top: 20px;
+        padding-top: 15px;
+    }
+
+    .qr-section {
+        margin-top: 20px;
+    }
+
+    .signature {
+        margin-top: 30px;
+    }
+
+    .pass-badge,
+    .grade-box {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+}
