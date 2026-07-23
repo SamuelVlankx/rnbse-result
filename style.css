@@ -138,17 +138,17 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 20px;
-    text-align: center;
+    gap: 25px;
+    padding: 20px;
 }
 
 .mbse-logo {
-    width: 120px;
-    height: 120px;
+    width: 150px;
+    height: 150px;
     object-fit: contain;
-    display: block;
     flex-shrink: 0;
 }
+
 
 .official-title {
     text-align: center;
@@ -367,10 +367,24 @@ footer {
     }
 
     header,
-    footer,
-    .card {
-        display: none !important;
-    }
+footer {
+    display: none !important;
+}
+
+.card {
+    display: block !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+    box-shadow: none !important;
+}
+
+.card > h2,
+.card > input,
+.card > button {
+    display: none !important;
+}
 
     #result {
         display: block !important;
