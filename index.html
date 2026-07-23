@@ -1,83 +1,117 @@
-<header>
-
-    <img src="logo.png" alt="MBSE Logo" class="header-logo">
-
-    <h1>🏛 Mizoram Board of School Education</h1>
-
-    <p>Government of Mizoram</p>
-
-    <h2>High School Leaving Certificate Examination</h2>
-
-    <h3>Result Portal 2017-2026</h3>
-
-    <div id="clock"></div>
-
-</header>
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>MBSE Result Portal 2026</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
+
 <header>
 
-    <h1>🏛 Mizoram Board of School Education</h1>
+    <img
+        src="logo.png"
+        alt="MBSE Logo"
+        class="header-logo"
+    >
 
-    <p>Government of Mizoram</p>
+    <h1>
+        🏛 Mizoram Board of School Education
+    </h1>
 
-    <h2>High School Leaving Certificate Examination</h2>
+    <p>
+        Government of Mizoram
+    </p>
 
-    <h3>Result Portal 2017-2026</h3>
+    <h2>
+        High School Leaving Certificate Examination
+    </h2>
+
+    <h3>
+        Result Portal 2017-2026
+    </h3>
 
     <div id="clock"></div>
 
 </header>
 
+
 <div class="card">
 
-    <h2>📄 Check Your Examination Result</h2>
+    <h2>
+        📄 Check Your Examination Result
+    </h2>
+
 
     <input
         type="text"
         id="roll"
-        placeholder="Enter Roll Number">
+        placeholder="Enter Roll Number"
+    >
+
 
     <input
         type="text"
         id="regNo"
-        placeholder="Enter Registration Number">
+        placeholder="Enter Registration Number"
+    >
 
-    <button id="btn" onclick="getResult()">
+
+    <button
+        id="btn"
+        onclick="getResult()"
+    >
         🔍 Check Result
     </button>
 
-    <button onclick="window.print()">
+
+    <button
+        onclick="window.print()"
+    >
         🖨 Print Result
     </button>
+
 
     <div id="result"></div>
 
 </div>
 
+
 <footer>
 
-    <p>© 2026 Mizoram Board of School Education</p>
+    <p>
+        © 2026 Mizoram Board of School Education
+    </p>
 
-    <p>Official Examination Result Portal</p>
+    <p>
+        Official Examination Result Portal
+    </p>
 
-    <p>Developed by The Notorious</p>
+    <p>
+        Developed by The Notorious
+    </p>
 
 </footer>
 
+
 <script src="script.js"></script>
+
 
 </body>
 
