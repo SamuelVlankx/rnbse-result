@@ -143,9 +143,10 @@ footer {
 }
 
 .mbse-logo {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     object-fit: contain;
+    display: block;
     flex-shrink: 0;
 }
 
