@@ -256,19 +256,33 @@ async function getResult() {
 
             <div class="marksheet-header">
 
-                <h2>
-                    🏛 Mizoram Board of School Education
-                </h2>
+    <div class="official-header">
 
-                <p>
-                    ${examTitle}
-                </p>
+        <img
+            src="logo.png"
+            alt="MBSE Logo"
+            class="mbse-logo"
+        >
 
-                <h3>
-                    OFFICIAL MARK SHEET
-                </h3>
+        <div class="official-title">
 
-            </div>
+            <h2>
+                MIZORAM BOARD OF SCHOOL EDUCATION
+            </h2>
+
+            <p>
+                ${examTitle}
+            </p>
+
+            <h3>
+                STATEMENT OF MARKS
+            </h3>
+
+        </div>
+
+    </div>
+
+</div>
 
 
             <hr>
