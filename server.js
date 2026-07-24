@@ -113,7 +113,7 @@ app.get("/result", async (req, res) => {
     grade = "B";
 
   const resultUrl =
-    `${req.protocol}://${req.get("host")}/?roll=${student.roll}&regNo=${student.regNo}`;
+  `${req.protocol}://${req.get("host")}/verify.html?roll=${student.roll}&regNo=${student.regNo}`;
 
   const qrCode = await QRCode.toDataURL(resultUrl);
 
