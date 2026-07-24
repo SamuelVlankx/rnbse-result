@@ -137,7 +137,7 @@ app.get("/result", async (req, res) => {
 
     marks: student.marks,
 
-    subjects: student.subjects,subjects: student.examType === "HSSLC"
+    subjects: student.examType === "HSSLC"
   ? student.subjects.slice(0, 5)
   : student.subjects,
     total,
