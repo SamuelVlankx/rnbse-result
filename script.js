@@ -602,3 +602,17 @@ async function getResult() {
 
 
 }
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const qrRoll = urlParams.get("roll");
+const qrRegNo = urlParams.get("regNo");
+
+if (qrRoll && qrRegNo) {
+
+    document.getElementById("roll").value = qrRoll;
+    document.getElementById("regNo").value = qrRegNo;
+
+    getResult();
+
+}
