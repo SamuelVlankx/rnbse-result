@@ -549,7 +549,7 @@ async function getResult() {
                 <br>
 
 
-                James Lalrinchhana
+                R. Lalthlamuana
 
 
                 <br>
